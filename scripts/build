@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+PRJ_ROOT=$(dirname $(dirname $(realpath $0)))
+
+main() {
+    mkdir $PRJ_ROOT/build/ && \
+    cd $PRJ_ROOT/build/ && \
+    cmake .. && \
+    cmake --build .
+}
+
+main $@

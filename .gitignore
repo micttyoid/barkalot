@@ -1,6 +1,9 @@
 # Cloudflare
 .wrangler/
 
+# CPP
+build/
+
 # Database populated for testing
 var/
 

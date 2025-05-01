@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+PRJ_ROOT=$(dirname $(dirname $(realpath $0)))
+
+main() {
+    rm -rf $PRJ_ROOT/build/
+}
+
+main $@
