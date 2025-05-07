@@ -1,1 +1,1 @@
-# C++ Refresher in full tilt
+# C++ Refresher in half tilt
