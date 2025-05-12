@@ -1,13 +1,16 @@
-#include "data_structure/linked_list/SinglyLinkedList.h"
+#include "SinglyLinkedListImpl.h"
+#include <iostream>
+#include <string>
 
-// Explicit template instantiations for common types
+namespace barkalot {
+namespace data_structure {
+namespace linked_list {
+
 template class SinglyLinkedList<int>;
-template class SinglyLinkedList<std::string>;
 template class SinglyLinkedList<double>;
+template class SinglyLinkedList<std::string>;
+template class SinglyLinkedList<char>;
 
-// For non-template helpers
-namespace {
-    void linkedListHelper() {
-        // ... Implementation of non-template utility functions ...
-    }
-}
+} // namespace linked_list
+} // namespace data_structure
+} // namespace barkalot

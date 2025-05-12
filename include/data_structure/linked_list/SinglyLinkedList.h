@@ -1,91 +1,53 @@
-#ifndef SINGLYLINKEDLIST_H
-#define SINGLYLINKEDLIST_H
+#ifndef BARKALOT_DATA_STRUCTURE_LINKED_LIST_SINGLY_LINKED_LIST_H
+#define BARKALOT_DATA_STRUCTURE_LINKED_LIST_SINGLY_LINKED_LIST_H
 
-// [path] src/data_structure/linked_list/SinglyLinkedList.cpp
+#include <cstddef>
+#include <stdexcept>
 
-#include <iostream>
-#include <string>
-
-template <typename T>
-class Node {
-public:
-    T data;
-    Node<T>* next;
-    
-    Node(T val) : data(val), next(nullptr) {}
-};
+namespace barkalot {
+namespace data_structure {
+namespace linked_list {
 
 template <typename T>
 class SinglyLinkedList {
 private:
-    Node<T>* head;
+    struct Node {
+        T data;
+        Node* next;
+
+        explicit Node(const T& data) : data(data), next(nullptr) {}
+    };
+    
+    Node* _head;
+    std::size_t _size;
     
 public:
-    SinglyLinkedList() : head(nullptr) {}
+    SinglyLinkedList();
+    SinglyLinkedList(const SinglyLinkedList& other);
+    SinglyLinkedList& operator=(const SinglyLinkedList& other);
     ~SinglyLinkedList();
-    
-    void append(T val);
-    void print();
-    void delete_node(T val);
-    bool is_empty() const { return head == nullptr; }  // Simple method can stay in header
+
+    // Capacity
+    bool empty() const;
+    std::size_t get_size() const;
+
+    // T Access
+    T& front();
+    const T& front() const;
+    T& back();
+    const T& back() const;    
+
+    // Modifiers
+    void push_front(const T& data);
+    void push_back(const T& data);
+    void pop_front();
+    void insert(std::size_t index, const T& data);
+    void erase(std::size_t index);
+    void clear();
 };
 
-// Template implementations (could also be in a .ipp file included here)
-template <typename T>
-SinglyLinkedList<T>::~SinglyLinkedList() {
-    Node<T>* current = head;
-    while (current) {
-        Node<T>* next = current->next;
-        delete current;
-        current = next;
-    }
-}
+} // namespace linked_list
+} // namespace data_structure
+} // namespace barkalot
 
-template <typename T>
-void SinglyLinkedList<T>::append(T val) {
-    Node<T>* newNode = new Node<T>(val);
-    if (!head) {
-        head = newNode;
-        return;
-    }
-    Node<T>* temp = head;
-    while (temp->next) {
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
-
-template <typename T>
-void SinglyLinkedList<T>::print() {
-    Node<T>* temp = head;
-    while (temp) {
-        std::cout << temp->data << " -> ";
-        temp = temp->next;
-    }
-    std::cout << "NULL\n";
-}
-
-template <typename T>
-void SinglyLinkedList<T>::delete_node(T val) {
-    if (!head) return;
-    
-    if (head->data == val) {
-        Node<T>* temp = head;
-        head = head->next;
-        delete temp;
-        return;
-    }
-    
-    Node<T>* curr = head;
-    while (curr->next && curr->next->data != val) {
-        curr = curr->next;
-    }
-    
-    if (curr->next) {
-        Node<T>* temp = curr->next;
-        curr->next = curr->next->next;
-        delete temp;
-    }
-}
-
-#endif
+#endif // BARKALOT_DATA_STRUCTURE_LINKED_LIST_SINGLY_LINKED_LIST_H
