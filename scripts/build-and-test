@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+PRJ_ROOT=$(dirname $(dirname $(realpath $0)))
+
+${PRJ_ROOT}/scripts/build && ${PRJ_ROOT}/scripts/test

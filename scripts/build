@@ -3,10 +3,11 @@
 PRJ_ROOT=$(dirname $(dirname $(realpath $0)))
 
 main() {
-    mkdir $PRJ_ROOT/build/ && \
-    cd $PRJ_ROOT/build/ && \
-    cmake .. -DBUILD_TESTS=ON && \
-    cmake --build .
+    ${PRJ_ROOT}/scripts/clean && \
+    cmake -B build -DBUILD_TESTS=ON && \
+    printf 'scripts:build %s\n' 'configuration done.' && \
+    cmake --build build && \
+    printf 'scripts:build %s\n' 'build done.'
 }
 
 main $@

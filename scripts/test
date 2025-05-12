@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 PRJ_ROOT=$(dirname $(dirname $(realpath $0)))
+WORKSPACE_DIR=/workspace
 
 main() {
     cd $PRJ_ROOT/build/ && ctest -V
