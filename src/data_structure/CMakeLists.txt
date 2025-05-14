@@ -9,8 +9,14 @@ target_include_directories(data_structure
         ${CMAKE_SOURCE_DIR}/include
 )
 
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/node")
+    add_subdirectory(node)
+endif()
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/deque")
+    add_subdirectory(deque)
+endif()
+
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/linked_list")
     add_subdirectory(linked_list)
 endif()
-
-

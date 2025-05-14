@@ -5,6 +5,8 @@
 #include <iostream>
 #include <stdexcept> // for std::out_of_range
 
+#include "../node/Node.h"
+
 namespace barkalot {
 namespace data_structure {
 namespace linked_list {
@@ -12,16 +14,8 @@ namespace linked_list {
 template <typename T>
 class DoublyLinkedList {
 private:
-    // Embedded node is popular
-    struct Node {
-        T data;
-        Node* prev;
-        Node* next;
-        Node(const T& val);
-    };
-
-    Node* _head;
-    Node* _tail;       // Optional
+    Node<T>* _head;
+    Node<T>* _tail;       // Optional
     std::size_t _size; // Optional
 
 public:

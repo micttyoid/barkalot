@@ -2,6 +2,7 @@
 #define BARKALOT_DATA_STRUCTURE_LINKED_LIST_DOUBLY_LINKED_LIST_IMPL_H
 
 #include "data_structure/linked_list/DoublyLinkedList.h"
+//#include "data_structure/node/Node.h"
 
 #include <stdexcept>
 #include <utility>
@@ -10,9 +11,11 @@ namespace barkalot {
 namespace data_structure {
 namespace linked_list {
 
+/*
 template <typename T>
 DoublyLinkedList<T>::Node::Node(const T& val) 
     : data(val), prev(nullptr), next(nullptr) {}
+*/
 
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList() 
@@ -50,7 +53,7 @@ T& DoublyLinkedList<T>::back() {
 // Modifiers(cppreference-lingo)
 template <typename T>
 void DoublyLinkedList<T>::push_front(const T& value) {
-    Node* new_node = new Node(value);
+    Node<T>* new_node = new Node(value);
     if (empty()) {
         _head = _tail = new_node;
     } else {
@@ -63,7 +66,7 @@ void DoublyLinkedList<T>::push_front(const T& value) {
 
 template <typename T>
 void DoublyLinkedList<T>::push_back(const T& value) {
-    Node* new_node = new Node(value);
+    Node<T>* new_node = new Node(value);
     if (empty()) {
         _head = _tail = new_node;
     } else {
@@ -78,7 +81,7 @@ template <typename T>
 void DoublyLinkedList<T>::pop_front() {
     if (empty()) return;
 
-    Node* temp = _head;
+    Node<T>* temp = _head;
     _head = _head->next;
 
     if (_head) {
@@ -95,7 +98,7 @@ template <typename T>
 void DoublyLinkedList<T>::pop_back() {
     if (empty()) return;
 
-    Node* temp = _tail;
+    Node<T>* temp = _tail;
     _tail = _tail->prev;
 
     if (_tail) {
@@ -118,12 +121,12 @@ void DoublyLinkedList<T>::insert(size_t pos, const T& value) {
         push_back(value);
     } else {
         // Use iterator in practice. This is for sake of learning
-        Node* curr = _head;
+        Node<T>* curr = _head;
         for (size_t i = 0; i < pos - 1; ++i) {
             curr = curr->next;
         }
 
-        Node* new_node = new Node(value);
+        Node<T>* new_node = new Node(value);
         new_node->next = curr->next; // That can be considered i < pos
         new_node->prev = curr;
         curr->next->prev = new_node; // Next node
@@ -146,7 +149,7 @@ void DoublyLinkedList<T>::erase(size_t pos) {
     } else if (pos == _size - 1) {
         pop_back();
     } else {
-        Node* curr = _head;
+        Node<T>* curr = _head;
         for (size_t i = 0; i < pos; ++i) {
             curr = curr->next;
         }
@@ -168,7 +171,7 @@ void DoublyLinkedList<T>::clear() {
 // etc.
 template <typename T>
 void DoublyLinkedList<T>::print_forward() const {
-    Node* curr = _head;
+    Node<T>* curr = _head;
     while (curr) {
         std::cout << curr->data << " ";
         curr = curr->next;
@@ -178,7 +181,7 @@ void DoublyLinkedList<T>::print_forward() const {
 
 template <typename T>
 void DoublyLinkedList<T>::print_backward() const {
-    Node* curr = _tail;
+    Node<T>* curr = _tail;
     while (curr) {
         std::cout << curr->data << " ";
         curr = curr->prev;
